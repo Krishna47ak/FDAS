@@ -41,7 +41,7 @@ const TableRows = ({ data }) => {
                 {data?.node1?.temp}
             </div>
             <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
-                {data?.node1?.hum}
+                {data?.node1?.humidity}
             </div>
             <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
                 {data?.node1?.co}
@@ -65,7 +65,7 @@ const TableRows = ({ data }) => {
                 {data?.node2?.temp}
             </div>
             <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
-                {data?.node2?.hum}
+                {data?.node2?.humidity}
             </div>
             <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
                 {data?.node2?.co}

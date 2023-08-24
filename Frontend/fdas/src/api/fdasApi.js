@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: 'https://fdas-vn6e.onrender.com/'
+    baseURL: 'http://localhost:4000'
 })
 
 export default instance;

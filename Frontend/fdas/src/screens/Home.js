@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import Splash from '../components/Splash'
-import { createFdas } from '../store/actions/fdas'
 import { connect } from 'react-redux'
 import TableRows from '../components/TableRows'
 
-const Home = ({ createFdas }) => {
+const Home = ({ fdas }) => {
     const [screen, setScreen] = useState(false)
     const [temp, setTemp] = useState(0)
     const [humidity, setHumidity] = useState(0)
@@ -15,46 +14,45 @@ const Home = ({ createFdas }) => {
         setScreen(true)
     ), 2500)
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        createFdas(temp, humidity, co, triggers)
-    };
+    // const onSubmit = (e) => {
+    //     e.preventDefault();
+    //     createFdas(temp, humidity, co, triggers)
+    // };
 
-    const data = [
-        [
-            {
-                name: 'Base 1',
-                node1: {
-                    temp: 22,
-                    hum: 23,
-                    co: 12,
-                    trigger: true
-                },
-                node2: {
-                    temp: 11,
-                    hum: 23,
-                    co: 12,
-                    trigger: false
-                },
-            },
-            {
-                name: 'Base 2',
-                node1: {
-                    temp: 33,
-                    hum: 23,
-                    co: 12,
-                    trigger: false
-                },
-                node2: {
-                    temp: 44,
-                    hum: 23,
-                    co: 12,
-                    trigger: true
-                },
-            },
-
-        ]
-    ]
+    // const data = [
+    //     [
+    //         {
+    //             name: 'Base 1',
+    //             node1: {
+    //                 temp: 22,
+    //                 hum: 23,
+    //                 co: 12,
+    //                 trigger: true
+    //             },
+    //             node2: {
+    //                 temp: 11,
+    //                 hum: 23,
+    //                 co: 12,
+    //                 trigger: false
+    //             },
+    //         },
+    //         {
+    //             name: 'Base 2',
+    //             node1: {
+    //                 temp: 33,
+    //                 hum: 23,
+    //                 co: 12,
+    //                 trigger: false
+    //             },
+    //             node2: {
+    //                 temp: 44,
+    //                 hum: 23,
+    //                 co: 12,
+    //                 trigger: true
+    //             },
+    //         }
+    //     ]
+    // ]
 
     // console.log(data[0]);
 
@@ -71,7 +69,7 @@ const Home = ({ createFdas }) => {
                             <p className='text-2xl font-bold ' >Triggers</p>
                         </div>
                         <div className='border-2 border-black' >
-                            {data[0].map((base) => {
+                            {fdas[0]?.data?.map((base) => {
                                 return <TableRows key={base?.name} data={base} />
                             })}
                         </div>
@@ -90,7 +88,7 @@ const Home = ({ createFdas }) => {
 }
 
 const mapStateToProps = state => ({
-    loading: state.fdas.loading
+    fdas: state.fdas.fdas
 })
 
-export default connect(mapStateToProps, { createFdas })(Home)
+export default connect(mapStateToProps)(Home)
