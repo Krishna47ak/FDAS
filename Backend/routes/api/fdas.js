@@ -15,8 +15,7 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', [
-    check('temp', 'Temperature is required').not().isEmpty(),
-    check('humidity', 'Humidity is required').not().isEmpty()
+    check('data', 'Data is required').not().isEmpty()
 ], async (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -24,10 +23,7 @@ router.post('/', [
     }
     try {
         const newFdas = new Fdas({
-            temp: req.body.temp,
-            humidity: req.body.humidity,
-            co: req.body.co,
-            triggers: req.body.triggers
+            data: req.body.data
         })
         const fdas = await newFdas.save()
         res.json(fdas)
