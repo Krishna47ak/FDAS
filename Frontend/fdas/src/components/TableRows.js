@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion'
+import { BiUpArrowAlt, BiDownArrowAlt } from 'react-icons/bi'
 
-const TableRows = ({ data }) => {
+const TableRows = ({ data, increase1, increase2 }) => {
     // const [number, setNumber] = useState(0)
     const [trigger1, setTrigger1] = useState(data?.node1?.trigger)
     const [trigger2, setTrigger2] = useState(data?.node2?.trigger)
@@ -10,8 +11,6 @@ const TableRows = ({ data }) => {
         setTrigger1(data?.node1?.trigger)
         setTrigger2(data?.node2?.trigger)
     }, [data?.node1?.trigger, data?.node2?.trigger])
-
-
 
     // useEffect(() => {
     //     const counter = setInterval(() => {
@@ -57,8 +56,10 @@ const TableRows = ({ data }) => {
             <div className='bg-[#2ed1ff] font-semibold p-5 border-2 border-black' >
                 Node 1
             </div>
-            <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
-                {data?.node1?.temp}
+            <div className='bg-[#2ed1ff] flex justify-center items-center space-x-4 p-5 border-2 border-black' >
+                <p className='pl-10' >{data?.node1?.temp}</p>
+                {increase1 ? <BiUpArrowAlt className='font-bold text-xl text-[#00ff2f] bg-black bg-opacity-30 rounded-2xl' /> : <BiDownArrowAlt className='font-bold text-xl text-red-700 bg-black bg-opacity-20 rounded-2xl' />}
+
             </div>
             <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
                 {data?.node1?.humidity}
@@ -81,8 +82,9 @@ const TableRows = ({ data }) => {
             <div className='bg-[#2ed1ff] font-semibold p-5 border-2 border-black' >
                 Node 2
             </div>
-            <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
-                {data?.node2?.temp}
+            <div className='bg-[#2ed1ff] flex justify-center items-center space-x-4 p-5 border-2 border-black' >
+                <p className='pl-10' >{data?.node2?.temp}</p>
+                {increase2 ? <BiUpArrowAlt className='font-bold text-xl text-[#00ff2f] bg-black bg-opacity-30 rounded-2xl' /> : <BiDownArrowAlt className='font-bold text-xl text-red-700 bg-black bg-opacity-20 rounded-2xl' />}
             </div>
             <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
                 {data?.node2?.humidity}
