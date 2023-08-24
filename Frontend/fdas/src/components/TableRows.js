@@ -1,8 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion'
 
 const TableRows = ({ data }) => {
     // const [number, setNumber] = useState(0)
+    const [trigger1, setTrigger1] = useState(data?.node1?.trigger)
+    const [trigger2, setTrigger2] = useState(data?.node2?.trigger)
+
+    useEffect(() => {
+        setTrigger1(data?.node1?.trigger)
+        setTrigger2(data?.node2?.trigger)
+    }, [data?.node1?.trigger, data?.node2?.trigger])
+
 
 
     // useEffect(() => {
@@ -21,13 +29,25 @@ const TableRows = ({ data }) => {
     const mainControls2 = useAnimation();
 
     useEffect(() => {
-        if (data?.node1?.trigger) {
+        if (trigger1) {
             mainControls1.start("visible")
+        } else {
+            mainControls1.start({
+                scale: 1,
+                borderRadius: 0,
+                transition: { repeat: 0, duration: 5 }
+            })
         }
-        if (data?.node2?.trigger) {
+        if (trigger2) {
             mainControls2.start("visible")
+        } else {
+            mainControls2.start({
+                scale: 1,
+                borderRadius: 0,
+                transition: { repeat: 0, duration: 5 }
+            })
         }
-    }, [data?.node1?.trigger, data?.node2?.trigger])
+    }, [trigger1, trigger2])
 
     return (
         <div className='grid grid-cols-6 text-center w-full' >
@@ -49,7 +69,7 @@ const TableRows = ({ data }) => {
             <motion.div
                 variants={{
                     hidden: { scale: 1 },
-                    visible: { scale: [1, 1.1, 1], borderRadius: [0,10,0] }
+                    visible: { scale: [1, 1.05, 1], borderRadius: [0, 10, 0] }
                 }}
                 initial="hidden"
                 animate={mainControls1}
@@ -73,7 +93,7 @@ const TableRows = ({ data }) => {
             <motion.div
                 variants={{
                     hidden: { scale: 1 },
-                    visible: { scale: [1, 1.1, 1], borderRadius: [0,10,0] }
+                    visible: { scale: [1, 1.05, 1], borderRadius: [0, 10, 0] }
                 }}
                 initial="hidden"
                 animate={mainControls2}

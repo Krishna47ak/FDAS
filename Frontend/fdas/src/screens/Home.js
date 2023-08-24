@@ -1,18 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Splash from '../components/Splash'
 import { connect } from 'react-redux'
 import TableRows from '../components/TableRows'
+import { fetchData } from '../store/actions/fdas'
 
-const Home = ({ fdas }) => {
+const Home = ({ fdas, fetchData }) => {
     const [screen, setScreen] = useState(false)
-    const [temp, setTemp] = useState(0)
-    const [humidity, setHumidity] = useState(0)
-    const [co, setCO] = useState(0)
-    const [triggers, setTriggers] = useState(false)
 
     setTimeout(() => (
         setScreen(true)
     ), 2500)
+
+    useEffect(() => {
+        setInterval(() => {
+            fetchData()
+        }, 5000);
+    }, [])
+
+    console.log("hi3");
 
     // const onSubmit = (e) => {
     //     e.preventDefault();
@@ -66,7 +71,7 @@ const Home = ({ fdas }) => {
                             <p className='col-start-3 text-2xl font-bold ' >Temperature</p>
                             <p className='text-2xl font-bold ' >Humidity</p>
                             <p className='text-2xl font-bold ' >CO</p>
-                            <p className='text-2xl font-bold ' >Triggers</p>
+                            <p className='text-2xl font-bold ' >Infrared Trigger</p>
                         </div>
                         <div className='border-2 border-black' >
                             {fdas[0]?.data?.map((base) => {
@@ -91,4 +96,4 @@ const mapStateToProps = state => ({
     fdas: state.fdas.fdas
 })
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, { fetchData })(Home)
