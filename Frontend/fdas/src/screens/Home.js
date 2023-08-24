@@ -3,7 +3,6 @@ import Splash from '../components/Splash'
 import { createFdas } from '../store/actions/fdas'
 import { connect } from 'react-redux'
 import TableRows from '../components/TableRows'
-import { motion } from 'framer-motion'
 
 const Home = ({ createFdas }) => {
     const [screen, setScreen] = useState(false)
