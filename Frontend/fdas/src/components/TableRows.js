@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion'
 import { BiUpArrowAlt, BiDownArrowAlt } from 'react-icons/bi'
 
-const TableRows = ({ data, increase1, increase2 }) => {
+const TableRows = ({ data, TempIncrease1, TempIncrease2, HumIncrease1, HumIncrease2, COIncrease1, COIncrease2 }) => {
     // const [number, setNumber] = useState(0)
     const [trigger1, setTrigger1] = useState(data?.node1?.trigger)
     const [trigger2, setTrigger2] = useState(data?.node2?.trigger)
@@ -49,23 +49,24 @@ const TableRows = ({ data, increase1, increase2 }) => {
     }, [trigger1, trigger2])
 
     return (
-        <div className='grid grid-cols-6 text-center w-full' >
-            <div className='bg-[#2ed1ff] font-bold p-5 border-2 border-black row-span-2 flex justify-center items-center ' >
-                {data?.name}
+        <div className='grid grid-cols-6 text-center w-full text-white' >
+            <div className='bg-black font-bold p-5  text-xl border border-white row-span-2 flex justify-center items-center ' >
+                {data?.name.toUpperCase()}
             </div>
-            <div className='bg-[#2ed1ff] font-semibold p-5 border-2 border-black' >
+            <div className='bg-black font-semibold p-5 border border-white' >
                 Node 1
             </div>
-            <div className='bg-[#2ed1ff] flex justify-center items-center space-x-4 p-5 border-2 border-black' >
-                <p className='pl-10' >{data?.node1?.temp}</p>
-                {increase1 ? <BiUpArrowAlt className='font-bold text-xl text-[#00ff2f] bg-black bg-opacity-30 rounded-2xl' /> : <BiDownArrowAlt className='font-bold text-xl text-red-700 bg-black bg-opacity-20 rounded-2xl' />}
-
+            <div className='bg-black flex justify-center items-center space-x-4 p-5 border border-white' >
+                <p className='pl-10 w-20' >{data?.node1?.temp}</p>
+                {TempIncrease1 ? <BiUpArrowAlt className='font-bold text-xl text-red-700 bg-black bg-opacity-30 rounded-2xl' /> : <BiDownArrowAlt className='font-bold text-xl text-[#00ff2f] bg-black bg-opacity-20 rounded-2xl' />}
             </div>
-            <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
-                {data?.node1?.humidity}
+            <div className='bg-black flex justify-center items-center space-x-4 p-5 border border-white' >
+                <p className='pl-10 w-20' >{data?.node1?.humidity}</p>
+                {HumIncrease1 ? <BiUpArrowAlt className='font-bold text-xl text-[#00ff2f] bg-black bg-opacity-30 rounded-2xl' /> : <BiDownArrowAlt className='font-bold text-xl text-red-700 bg-black bg-opacity-20 rounded-2xl' />}
             </div>
-            <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
-                {data?.node1?.co}
+            <div className='bg-black flex justify-center items-center space-x-4 p-5 border border-white' >
+                <p className='pl-10 w-20' >{data?.node1?.co}</p>
+                {COIncrease1 ? <BiUpArrowAlt className='font-bold text-xl text-red-700 bg-black bg-opacity-30 rounded-2xl' /> : <BiDownArrowAlt className='font-bold text-xl text-[#00ff2f] bg-black bg-opacity-20 rounded-2xl' />}
             </div>
             <motion.div
                 variants={{
@@ -75,22 +76,24 @@ const TableRows = ({ data, increase1, increase2 }) => {
                 initial="hidden"
                 animate={mainControls1}
                 transition={{ repeat: Infinity, duration: 1.8, delay: 0.5 }}
-                className={`${data?.node1?.trigger ? 'bg-red-500 font-semibold' : 'bg-[#2ed1ff]'} p-5 border-2 border-black`}
+                className={`${data?.node1?.trigger ? 'bg-red-500 font-semibold' : 'bg-black'} p-5 border border-white`}
             >
                 {data?.node1?.trigger ? "True" : "False"}
             </motion.div>
-            <div className='bg-[#2ed1ff] font-semibold p-5 border-2 border-black' >
+            <div className='bg-black font-semibold p-5 border border-white' >
                 Node 2
             </div>
-            <div className='bg-[#2ed1ff] flex justify-center items-center space-x-4 p-5 border-2 border-black' >
-                <p className='pl-10' >{data?.node2?.temp}</p>
-                {increase2 ? <BiUpArrowAlt className='font-bold text-xl text-[#00ff2f] bg-black bg-opacity-30 rounded-2xl' /> : <BiDownArrowAlt className='font-bold text-xl text-red-700 bg-black bg-opacity-20 rounded-2xl' />}
+            <div className='bg-black flex justify-center items-center space-x-4 p-5 border border-white' >
+                <p className='pl-10 w-20' >{data?.node2?.temp}</p>
+                {TempIncrease2 ? <BiUpArrowAlt className='font-bold text-xl text-red-700 bg-black bg-opacity-30 rounded-2xl' /> : <BiDownArrowAlt className='font-bold text-xl text-[#00ff2f] bg-black bg-opacity-20 rounded-2xl' />}
             </div>
-            <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
-                {data?.node2?.humidity}
+            <div className='bg-black flex justify-center items-center space-x-4 p-5 border border-white' >
+                <p className='pl-10 w-20' >{data?.node2?.humidity}</p>
+                {HumIncrease2 ? <BiUpArrowAlt className='font-bold text-xl text-[#00ff2f] bg-black bg-opacity-30 rounded-2xl' /> : <BiDownArrowAlt className='font-bold text-xl text-red-700 bg-black bg-opacity-20 rounded-2xl' />}
             </div>
-            <div className='bg-[#2ed1ff] p-5 border-2 border-black' >
-                {data?.node2?.co}
+            <div className='bg-black flex justify-center items-center space-x-4 p-5 border border-white' >
+                <p className='pl-10 w-20' >{data?.node2?.co}</p>
+                {COIncrease2 ? <BiUpArrowAlt className='font-bold text-xl text-red-700 bg-black bg-opacity-30 rounded-2xl' /> : <BiDownArrowAlt className='font-bold text-xl text-[#00ff2f] bg-black bg-opacity-20 rounded-2xl' />}
             </div>
             <motion.div
                 variants={{
@@ -100,7 +103,7 @@ const TableRows = ({ data, increase1, increase2 }) => {
                 initial="hidden"
                 animate={mainControls2}
                 transition={{ repeat: Infinity, duration: 1.8, delay: 0.5 }}
-                className={`${data?.node2?.trigger ? 'bg-red-500 font-semibold' : 'bg-[#2ed1ff]'} p-5 border-2 border-black`}
+                className={`${data?.node2?.trigger ? 'bg-red-500 font-semibold' : 'bg-black'} p-5 border border-white`}
             >
                 {data?.node2?.trigger ? "True" : "False"}
             </motion.div>

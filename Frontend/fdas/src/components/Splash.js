@@ -59,7 +59,7 @@ const Splash = () => {
                 </motion.div>
             </div>
             <motion.div
-                animate={{ opacity: [0.5, 1], scale: [0,1,0.9,1] }}
+                animate={{ opacity: [0.5, 1], scale: [0,1,0.95,1] }}
                 transition={{ duration: 2, delay: 0.9 }}
                 className='mt-32 text-5xl font-bold text-[#69cf66] font-mono'
             >
